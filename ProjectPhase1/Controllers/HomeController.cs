@@ -62,17 +62,46 @@ namespace ProjectPhase1.Controllers
             return View(us);
         }
 
-       public ActionResult DeleteLeave (int uid)
+        public ActionResult UpdateLeave(long ID)
         {
             leaveApplicationDatabaseEntities db = new leaveApplicationDatabaseEntities();
-            LeaveList li = db.LeaveLists.Where(temp=> temp.LeaveID == uid).FirstOrDefault();
+            LeaveList li = db.LeaveLists.Where(temp => temp.LeaveID == ID).FirstOrDefault();
             return View(li);
         }
-     
 
- 
+        [HttpPost]
+        public ActionResult UpdateLeave(long ID, LeaveList p)
+        {
+            leaveApplicationDatabaseEntities db = new leaveApplicationDatabaseEntities();
+            LeaveList li = db.LeaveLists.Where(temp => temp.LeaveID == ID).FirstOrDefault();
+            if (li != null)
+            {
+                li.LeaveText = p.LeaveText;
+
+            }
+            db.SaveChanges();
+            return RedirectToAction("GetAllLeaveList");
+        }
+
+        public ActionResult DeleteLeave (long ID)
+        {
+            leaveApplicationDatabaseEntities db = new leaveApplicationDatabaseEntities();
+            LeaveList li = db.LeaveLists.Where(temp=> temp.LeaveID == ID).FirstOrDefault();
+            return View(li);
+        }
 
         
+        [HttpPost]
+        public ActionResult DeleteLeave(long ID, LeaveList p )
+        {
+            leaveApplicationDatabaseEntities db = new leaveApplicationDatabaseEntities();
+            LeaveList li = db.LeaveLists.Where(temp => temp.LeaveID == ID).FirstOrDefault();
+            db.LeaveLists.Remove(li);
+            db.SaveChanges();
+            return RedirectToAction("GetAllLeaveList");
+        }
+
+
 
     }
 }

@@ -167,6 +167,7 @@
     <Content Include="Views\Home\GetAllLeaveList.cshtml" />
     <Content Include="Views\Home\UpdateLeaveList.cshtml" />
     <Content Include="Views\Home\DeleteLeave.cshtml" />
+    <Content Include="Views\Home\UpdateLeave.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
